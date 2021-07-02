@@ -5,3 +5,9 @@ It's a Python script that reads your calendar - and based on what you name your 
 I plan every day in my calendar and name the calendar events like; 'ADM: Schedule', 'WEB: Blogs' and so on. The script then groups all 'ADM:', 'WEB:' and other categories, calculates the time and divides it by the total time to get percentages.
 ### Disclaimer
 I'm not a coder. I just like to create stuff. :)
+### Built with
+* Python 3.x
+* Bootstrap 5.x https://getbootstrap.com/
+* Chart JS https://www.chartjs.org/
+### Credits
+The calendar import function is based on jeinarsson work https://gist.github.com/jeinarsson/989329deb6906cae49f6e9f979c46ae7
