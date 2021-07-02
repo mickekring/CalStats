@@ -1,0 +1,233 @@
+body {
+    background: #272727;
+	font-family: 'Poppins', sans-serif;
+    padding: 20px;
+}
+
+p {
+	font-size: 15px;
+	margin-top: 10px;
+}
+
+a {
+    color: #fff;
+    text-decoration: none;
+}
+
+p.cattitle {
+    color: #fff;
+    font-size: 20px;
+    margin-bottom: -15px;
+    margin-top: 0px;
+}
+
+.row {
+    padding: 14px;
+}
+
+a:hover {
+    color: #f29f1c;
+}
+
+.card.card-body {
+    background: #383838;
+    font-weight: 400;
+    text-align: left;
+    padding-left: 20px;
+    font-size: 15px;
+    color:  #fff;
+    border: 0px;
+}
+
+.div1-half-top {
+    color: #fff;
+    background-color: #111111;
+    padding-top: 22px;
+    padding-bottom: 22px;
+    padding-left: 22px;
+    padding-right: 22px;
+    border-radius: 14px;
+}
+
+
+.progress {
+    margin-bottom: 18px;
+}
+
+.div1, .div2, .div3, .div4, .div5, .div6 {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+    background: #111111;
+}
+
+.div2.table {
+    border-spacing: 0px 14px;
+    border-radius: 14px;
+    padding-top: 10px;
+}
+
+/*
+
+
+*/
+
+/* ############## DIVS ############## */
+
+
+
+
+
+/* ############ FONTS ############ */
+
+h1 {
+    font-size: 36px;
+    font-weight: 700;
+}
+
+h1.clock {
+    font-size: 68px;
+    font-weight: 600;
+    margin-top: 22px;
+}
+
+h1.available {
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 20px;
+    text-transform: uppercase;
+    font-size: 30px;
+    position: absolute;
+    bottom: 20px;
+}
+
+h2 {
+    font-size: 24px;
+    font-weight: 300;
+}
+
+h2.calheading {
+    font-size: 26px;
+    font-weight: 600;
+    margin-top: 2px;
+    margin-bottom: 16px;
+}
+
+h2.calheadingbox {
+    font-size: 26px;
+    font-weight: 600;
+    margin-bottom: 16px;
+}
+
+h4 {
+    margin-top: 16px;
+    margin-bottom: 16px;
+    text-transform: capitalize;
+}
+
+.div1 h1, .div2 h1, .div3 h1, .div4 h1, .div5 h1, .div6 h1 {
+    font-size: 54px;
+    font-weight: 400;
+    margin-top: 18px;
+    margin-bottom: 0px;
+}
+
+p.calfont {
+    font-size: 18px;
+    line-height: 28px;
+    font-weight: 300;
+    padding-left: 20px;
+    padding-right: 20px;
+    text-align: left;
+}
+
+p.calfontdate {
+    font-size: 18px;
+    line-height: 28px;
+    font-weight: 600;
+    padding-left: 20px;
+    padding-right: 20px;
+    color: #fff;
+}
+
+p.calfontsource {
+    font-size: 18px;
+    line-height: 28px;
+    font-weight: 300;
+    padding-left: 20px;
+    padding-right: 20px;
+    text-align: left;
+    color: #fff;
+}
+
+p.boxp {
+    font-size: 16px;
+}
+
+/* ########### VIDEO & IMAGES ############ */
+
+#videoBG {
+    position: absolute;
+    width: 210%;
+    top: -10px;
+    left: -120px;
+    z-index: -1;
+    overflow: hidden;
+}
+
+.div3 img {
+
+    width: 246px;
+    margin-top: 15px;
+}
+
+.div4 img {
+    position: absolute;
+    top: -18px;
+    right: -18px;
+    height: 150px;
+}
+
+/* ########### MISC ########### */
+
+.progress {
+	height: 40px;
+	margin-top: 18px;
+	background-color: #333333eb;
+}
+
+.progress-bar {
+	font-size: 18px;
+    line-height: 42px;
+}
+
+.progress-bar-warning {
+    background-color: #ffa500;
+}
+
+.progress-bar-danger {
+    background-color: #971516;
+}
+
+th.first {
+    width: 20%;
+    text-align: center;
+    border-top-left-radius: 16px;
+    border-bottom-left-radius: 16px;
+}
+
+th.second {
+    width: 50%;
+    background: #383838;
+}
+
+th.third {
+    width: 20%;
+    background: #525151;
+}
+
+th.third p.calfont {
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
