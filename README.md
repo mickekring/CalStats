@@ -2,7 +2,7 @@
  Retrieves data from your Google or Apple calendar and creates some statistics that might be useful to you (or your boss ;) )
  My stats are running live at https://mickekring.se/stats/time/
  
-![www](https://user-images.githubusercontent.com/10948066/124255906-fa564800-db2a-11eb-99be-103e08777d13.jpg)
+![v0_3](https://user-images.githubusercontent.com/10948066/124362857-f237fe80-dc37-11eb-8585-c4f550530f4b.jpg)
 
 ## What is it and what does it do?
 It's a Python script that reads your calendar - and based on what you name your calendar events, it creates statistics from it. Then it updates a website so that you can view it in a more user friendly way.<br /><br >
@@ -18,6 +18,10 @@ __I'm not a coder__. I just like to create stuff. :)
 * Bootstrap 5.x https://getbootstrap.com/
 * Chart JS https://www.chartjs.org/
 * Font Awesome https://fontawesome.com/
+
+## Version History
+* 0.3 Added graph for hours worked, latest 7 weeks.
+* 0.2 Initial upload. 
 
 ## Credits
 The calendar import function is based on jeinarsson work https://gist.github.com/jeinarsson/989329deb6906cae49f6e9f979c46ae7
