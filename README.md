@@ -20,6 +20,9 @@ __I'm not a coder__. I just like to create stuff. :)
 * Chart JS https://www.chartjs.org/
 * Font Awesome https://fontawesome.com/
 
+## Want to run it yourself?
+* In not really ready to document this yet. It's still pretty much in development. 
+
 ## Version History
 * 0.3 Added graph for hours worked, latest 7 weeks.
 * 0.2 Initial upload. 
