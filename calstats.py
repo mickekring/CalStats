@@ -277,12 +277,16 @@ def FileuUploads():
 		filepath2 = "status.php"
 		localpath2 = localUrlPath + "status.php"
 
-		filepath3 = "30days.php"
-		localpath3 = localUrlPath + "30days.php"
+		filepath3 = "7weekcats.php"
+		localpath3 = localUrlPath + "7weekcats.php"
+
+		filepath4 = "7weekhours.php"
+		localpath4 = localUrlPath + "7weekhours.php"
 
 		sftp.put(localpath1, filepath1)
 		sftp.put(localpath2, filepath2)
 		sftp.put(localpath3, filepath3)
+		sftp.put(localpath4, filepath4)
 
 		sftp.close()
 		transport.close()
@@ -294,7 +298,7 @@ def FileuUploads():
 		print("\n>>> Error. Files unable to upload.")	
 		pass
 
-def Stats30Days():
+def Stats7weeks():
 
 	search_db = Query()
 	utc=pytz.UTC
@@ -321,7 +325,7 @@ def Stats30Days():
 	db_get_start = table_log_events.all()
 
 
-	######## TOTAL Month - 35 days split into 5 weeks. Total time and weekly time #########
+	######## TOTAL Month - 49 days split into 7 weeks. Total time and weekly time #########
 
 	month_days = 7
 	month_offset = 0
@@ -576,7 +580,7 @@ def Stats30Days():
 			percList_SUP = percList
 
 
-	html = ('<script> const labels = ["1", "2", "3", "4", "5", "6", "7"]; const NUMBER_CFG = {min: 0, max: 100}; const data = {labels: labels, datasets: [{ label: "Administration", data: [' 
+	html_cat = ('<script> const labels = ["1", "2", "3", "4", "5", "6", "7"]; const NUMBER_CFG = {min: 0, max: 100}; const data = {labels: labels, datasets: [{ label: "Administration", data: [' 
 		+ percList_ADM + '], borderColor: "rgb(255, 99, 132)", backgroundColor: "rgb(255, 99, 132)",}, { label: "IT-pedagog", data: [' 
 		+ percList_ITPED + '], borderColor: "#7db53f", backgroundColor: "#7db53f",}, { label: "Egen utveckling", data: [' 
 		+ percList_UTV + '], borderColor: "#bf2c2c", backgroundColor: "#bf2c2c",}, { label: "Support", data: [' 
@@ -585,8 +589,25 @@ def Stats30Days():
 		+ percList_WEBB +'], borderColor: "#0dcaf0", backgroundColor: "#0dcaf0",}, {label: "Mediaproduktion", data: [' 
 		+ percList_MEDIA + '], borderColor: "#ffc107", backgroundColor: "#ffc107",}]}; const config = {type: "line", data: data, options: {color: "#ffffff", responsive: true, plugins: {legend: {position: "top",}, } }, }; var myChart = new Chart(document.getElementById("myChart30"), config);</script>')
 
-	with open("30days.php", "w") as f2:
-			f2.write(html)
+	with open("7weekcats.php", "w") as f2:
+			f2.write(html_cat)
+
+	#print("Summa totalt veckor 1-5: " + str(timeList_weeks_in_month))
+
+	timeList_weeks_in_month = str(timeList_weeks_in_month)
+	timeList_weeks_in_month = timeList_weeks_in_month.replace(":00","")
+	timeList_weeks_in_month = timeList_weeks_in_month.replace(":",".")
+	timeList_weeks_in_month = timeList_weeks_in_month.replace("'","")
+	timeList_weeks_in_month = timeList_weeks_in_month.replace("[","")
+	timeList_weeks_in_month = timeList_weeks_in_month.replace("]","")
+
+	#print(timeList_weeks_in_month)
+
+	html_hours = ('<script> const labels2 = ["1", "2", "3", "4", "5", "6", "7"]; const NUMBER_CFG2 = {min: 0, max: 100}; const data2 = {labels: labels2, datasets: [{ label: "40 TIMMAR", data: [40, 40, 40, 40, 40, 40, 40], borderColor: "rgb(255, 99, 132)", backgroundColor: "rgb(255, 99, 132)", borderDash: [5, 5],}, {label: "ARBETAD TID", data: [' 
+		+ timeList_weeks_in_month + '], borderColor: "#ffc107", backgroundColor: "#ffc107",}]}; const config2 = {type: "line", data: data2, options: {color: "#ffffff", responsive: true, plugins: {legend: {position: "top",}, } }, }; var myChart2 = new Chart(document.getElementById("myChart1"), config2);</script>')
+
+	with open("7weekhours.php", "w") as f3:
+			f3.write(html_hours)
 
 
 def timeNow():
@@ -617,7 +638,7 @@ def Main():
 		Calendar()
 		removedEvents()
 		sumTimeCat()
-		Stats30Days()
+		Stats7weeks()
 		timeNow()
 		FileuUploads()
 		t.sleep(600)
