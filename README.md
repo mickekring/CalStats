@@ -1,6 +1,6 @@
 # CalStats
  Retrieves data from your Google or Apple calendar and creates some statistics that might be useful to you (or your boss ;) )
- My stats are running live at https://mickekring.se/stats/time/
+ My stats are running live at https://mickekring.se/stats/time/ (in Swedish)
  
 ![v0_3](https://user-images.githubusercontent.com/10948066/124362857-f237fe80-dc37-11eb-8585-c4f550530f4b.jpg)
 
