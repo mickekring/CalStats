@@ -5,8 +5,9 @@
 ![v0_3](https://user-images.githubusercontent.com/10948066/124362857-f237fe80-dc37-11eb-8585-c4f550530f4b.jpg)
 
 ## What is it and what does it do?
-It's a Python script that reads your calendar - and based on what you name your calendar events, it creates statistics from it. Then it updates a website so that you can view it in a more user friendly way.<br /><br >
-I plan every day in my calendar and name the calendar events like; 'ADM: Schedule', 'WEB: Blogs' and so on. The script then groups all 'ADM:', 'WEB:' and other categories (hard coded in the script), calculates the time and divides it by the total time to get some percentages.
+It's a Python script that reads your calendar - and based on the prefix of the name of your calendar events, it creates statistics from it. Then it updates a website so that you can view it in a more user friendly way.
+
+I plan everything in my calendar and name the calendar events with prefixes like; 'ADM: Schedule', 'WEB: Blogs' and so on. The script then groups all 'ADM:', 'WEB:' and other categories (hard coded in the script), calculates the time and divides it by the total time to get some percentages and other stuff.
 
 ![cal](https://user-images.githubusercontent.com/10948066/124256060-283b8c80-db2b-11eb-93fe-8a4928c986e2.jpg)
 
