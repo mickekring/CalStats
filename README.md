@@ -24,8 +24,8 @@ __I'm not a coder__. I just like to create stuff. :)
 * In not really ready to document this yet. It's still pretty much in development. 
 
 ## Version History
-* 0.4 Added graph for hours worked, latest 7 weeks.
-* 0.2 Initial upload. 
+* 0.4 Added graph for hours worked, last 7 weeks.
+* 0.2 Initial upload. Percentages per category since a date you choose. Percentages per category, last 7 weeks.
 
 ## Credits
 The calendar import function in the script is based on jeinarsson work https://gist.github.com/jeinarsson/989329deb6906cae49f6e9f979c46ae7
