@@ -25,4 +25,4 @@ __I'm not a coder__. I just like to create stuff. :)
 * 0.2 Initial upload. 
 
 ## Credits
-The calendar import function is based on jeinarsson work https://gist.github.com/jeinarsson/989329deb6906cae49f6e9f979c46ae7
+The calendar import function in the script is based on jeinarsson work https://gist.github.com/jeinarsson/989329deb6906cae49f6e9f979c46ae7
