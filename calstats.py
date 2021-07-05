@@ -1,4 +1,5 @@
 
+### TODO: Cleanup unused modules - prob math, os, sys, requests, signal
 
 import math, pytz, paramiko, locale, yaml, os, sys, requests, signal
 from time import strftime
@@ -12,9 +13,18 @@ from tinydb import TinyDB, Query
 
 ### Database and tables setup
 db = TinyDB('calstats.json')
-
 table_log_events = db.table('Events')
 table_stats = db.table('Stats')
+
+# Things stored in database are:
+# 	EventID, Category, Startdate, Enddate, Event, EventTimeSum
+
+#############################
+
+# Categories the script looks for in the calendar are:
+# 	WEBB: SUPPORT: ADM: BESÖK: MÖTE: ITPED: KONF: UTV: MEDIA: LUNCH: DIV:
+
+#############################
 
 
 ### Reads passwords, paths, sites to monitor and stuff from file
@@ -30,16 +40,13 @@ remoteUrlPath = conf['paths']['remoteurlpath'] # Remote path on SFTP server for 
 locale.setlocale(locale.LC_ALL, 'sv_SE.UTF-8')
 
 
-## Load config and credentials
-conf = yaml.load(open('credentials.yml'), Loader=yaml.FullLoader)
-
-
 # Adjust in hours for summer / winter time
 time_adjust = 2
 
 
-# Adjust in hours for how long forwards the script should check your calendar
+# Adjust in hours for how long in the future the script should check your calendar
 check_time = 168
+
 
 # Start date from where calendar check starts | Year, Month, Day
 datetime_start = datetime(2021, 5, 1)
@@ -54,7 +61,7 @@ def logging(event_id, category, start, end, activity_day, event_time):
 	table_log_events.insert({'EventID': event_id, 'Category': category, 'Startdate': str(start), 'Enddate': str(end), 'Event': activity_day, 'EventTimeSum': str(event_time)})
 
 
-### Main function for checking calendar for events
+### Main function for checking your calendar for events
 def Calendar():
 
 	url = conf['urlcalendar']['link_url']
@@ -121,7 +128,7 @@ def Calendar():
 
 		global sum_all
 
-		# Excluding category "Okänt" and "Lunch" from total sum
+		# Excluding category "Okänt" ( = Unknown) and "Lunch" from total sum
 		
 		if category == "Okänt" or category == "Lunch":
 			pass
@@ -144,7 +151,7 @@ def Calendar():
 
 		search_db = Query()
 
-		# Checking if calendar event has been rescheduled or changed - and if, deletes it and relogs it
+		# Checking if calendar event has been rescheduled or changed - and if, deletes it and relogs it in DB
 
 		if table_log_events.search(search_db.EventID == ev_id):
 			print("IN DB")
@@ -162,6 +169,7 @@ def Calendar():
 			logging(ev_id, category, start, end, activity_day, event_time)
 		
 
+# Compares events in DB to calendar, to remove events that have been deleted in your calendar
 def removedEvents():
 
 	search_db = Query()	
@@ -182,6 +190,7 @@ def removedEvents():
 		table_log_events.remove(search_db.EventID == d)
 
 
+# Sum of categories in percent and hours from datetime_start set
 def sumTimeCat():
 
 	categories = ['Webb', 'Support', 'Administration', 'Besök', 'Möte', 'IT-pedagog', 'Konferens', 'Egen utveckling', 'Mediaproduktion', 'Diverse']
@@ -256,6 +265,7 @@ def sumTimeCat():
 			f2.write(statusList)
 
 
+# Uploads php files to your sftp / web server
 def FileuUploads():
 	
 	try:
@@ -298,6 +308,7 @@ def FileuUploads():
 		print("\n>>> Error. Files unable to upload.")	
 		pass
 
+# Sums stats of categories in percent for last 7 weeks including working hours
 def Stats7weeks():
 
 	search_db = Query()
@@ -306,8 +317,7 @@ def Stats7weeks():
 	weeks = 8 # One extra for the loop
 	week = 1
 
-	#cat_list = ['Webb', 'Support', 'Administration', 'Besök', 'Möte', 'IT-pedagog', 'Konferens', 'Egen utveckling', 'Mediaproduktion', 'Diverse']
-	cat_list = ['Administration', 'Webb', 'Mediaproduktion', 'IT-pedagog', 'Möte', 'Egen utveckling', 'Support'] # Test
+	cat_list = ['Administration', 'Webb', 'Mediaproduktion', 'IT-pedagog', 'Möte', 'Egen utveckling', 'Support'] 
 
 	total_timeList = []
 	total_timeList_month = []
@@ -325,7 +335,7 @@ def Stats7weeks():
 	db_get_start = table_log_events.all()
 
 
-	######## TOTAL Month - 49 days split into 7 weeks. Total time and weekly time #########
+	######## TOTAL - 49 days split into 7 weeks. Total time and weekly time #########
 
 	month_days = 7
 	month_offset = 0
@@ -427,7 +437,7 @@ def Stats7weeks():
 
 			timeList = []
 			
-			# Vecka och kategori
+			# Week and category
 
 			print("Kategori att loopa: " + cat)
 		
@@ -610,6 +620,7 @@ def Stats7weeks():
 			f3.write(html_hours)
 
 
+# Gets time and creates a updated time php page
 def timeNow():
 	global klNu
 	global day
@@ -631,6 +642,7 @@ def timeNow():
 		f1.write(styleTime + '<h1 class="clock"><i class="far fa-clock" aria-hidden="true"></i> ' + klNu + '</h1><h4>SENAST UPPDATERAT<br />' + day + ' | ' + date + ' ' + month + ' ' + year + ' | ' + klNu + '</h4>')
 
 
+# Main loop
 def Main():
 
 	while True:
