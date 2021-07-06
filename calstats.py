@@ -1,7 +1,4 @@
-
-### TODO: Cleanup unused modules - prob math, os, sys, requests, signal
-
-import math, pytz, paramiko, locale, yaml, os, sys, requests, signal
+import pytz, paramiko, locale, yaml
 from time import strftime
 import time as t
 from dateutil import tz
@@ -16,10 +13,12 @@ db = TinyDB('calstats.json')
 table_log_events = db.table('Events')
 table_stats = db.table('Stats')
 
+
 # Things stored in database are:
 # 	EventID, Category, Startdate, Enddate, Event, EventTimeSum
 
 #############################
+
 
 # Categories the script looks for in the calendar are:
 # 	WEBB: SUPPORT: ADM: BESÖK: MÖTE: ITPED: KONF: UTV: MEDIA: LUNCH: DIV:
@@ -56,12 +55,17 @@ datetime_start = datetime(2021, 5, 1)
 
 
 ### Log calendar events to database
-def logging(event_id, category, start, end, activity_day, event_time):
+
+def Logging(event_id, category, start, end, activity_day, event_time):
 
 	table_log_events.insert({'EventID': event_id, 'Category': category, 'Startdate': str(start), 'Enddate': str(end), 'Event': activity_day, 'EventTimeSum': str(event_time)})
 
 
+# ------------------------------
+
+
 ### Main function for checking your calendar for events
+
 def Calendar():
 
 	url = conf['urlcalendar']['link_url']
@@ -79,6 +83,7 @@ def Calendar():
 	count = 1
 
 	global cal_id_list
+
 	cal_id_list = []
 
 	for e in events:
@@ -132,22 +137,24 @@ def Calendar():
 		
 		if category == "Okänt" or category == "Lunch":
 			pass
+
 		else:
 			if count == 1:
 				sum_all = event_time
 				count = 2
+
 			else:
 				sum_all = sum_all + event_time
 
 		print("---------------")
 		print("ID: " + ev_id)
-		print("Kategori: " + category)
-		print("Starttid: " + str(start))
-		print("Sluttud: " + str(end))
+		print("Category: " + category)
+		print("Start time: " + str(start))
+		print("End time: " + str(end))
 		print("Event: " + activity_day)
-		print("Tidsåtgång: " + str(event_time))
+		print("Time spent: " + str(event_time))
 		print("---------------\n")
-		print("Total tid: " + str(sum_all))
+		print("Total time: " + str(sum_all))
 
 		search_db = Query()
 
@@ -155,22 +162,28 @@ def Calendar():
 
 		if table_log_events.search(search_db.EventID == ev_id):
 			print("IN DB")
+
 			if table_log_events.search(search_db.Startdate == str(start)) and table_log_events.search(search_db.Enddate == str(end)) and table_log_events.search(search_db.Event == activity_day):
 				print("OK.")
+
 			else: 
 				print("Meeting has been changed.")
 				table_log_events.remove(search_db.EventID == ev_id)
 				print("Removed meeting from DB")
-				logging(ev_id, category, start, end, activity_day, event_time)
+				Logging(ev_id, category, start, end, activity_day, event_time)
 				print("Relogged meeting\n")
 
 		else:
 			print("NOT IN DB")
-			logging(ev_id, category, start, end, activity_day, event_time)
+			Logging(ev_id, category, start, end, activity_day, event_time)
 		
 
+# ------------------------------
+
+
 # Compares events in DB to calendar, to remove events that have been deleted in your calendar
-def removedEvents():
+
+def RemovedEvents():
 
 	search_db = Query()	
 
@@ -190,8 +203,12 @@ def removedEvents():
 		table_log_events.remove(search_db.EventID == d)
 
 
+# ------------------------------
+
+
 # Sum of categories in percent and hours from datetime_start set
-def sumTimeCat():
+
+def SumTimeCat():
 
 	categories = ['Webb', 'Support', 'Administration', 'Besök', 'Möte', 'IT-pedagog', 'Konferens', 'Egen utveckling', 'Mediaproduktion', 'Diverse']
 	listCat = []
@@ -265,7 +282,11 @@ def sumTimeCat():
 			f2.write(statusList)
 
 
+# ------------------------------
+
+
 # Uploads php files to your sftp / web server
+
 def FileuUploads():
 	
 	try:
@@ -308,7 +329,12 @@ def FileuUploads():
 		print("\n>>> Error. Files unable to upload.")	
 		pass
 
+
+# ------------------------------
+
+
 # Sums stats of categories in percent for last 7 weeks including working hours
+
 def Stats7weeks():
 
 	search_db = Query()
@@ -330,6 +356,8 @@ def Stats7weeks():
 	catTime_MOTE = []
 	catTime_UTV = []
 	catTime_SUP = []
+
+	date_x_list = []
 	
 	# Stores the whole DB to a list
 	db_get_start = table_log_events.all()
@@ -378,8 +406,15 @@ def Stats7weeks():
 				if startQueryDate_strip in (db_get_start[x]['Startdate']) and "Okänt" not in (db_get_start[x]['Category']):
 					time = (db_get_start[x]['EventTimeSum'])
 					total_timeList_week.append(time)
+
 				else:
 					pass
+
+			if month_days == 1 or month_days == 8 or month_days == 15 or month_days == 22 or month_days == 29 or month_days == 36 or month_days == 43:
+				date_x_list.append(startQueryDate_strip)
+			else: 
+				pass
+
 			month_days -= 1
 
 		totalSecs = 0
@@ -392,7 +427,6 @@ def Stats7weeks():
 
 		week += 1
 
-	#print("Summa totalt veckor 1-5: " + str(timeList_weeks_in_month))
 
 	for tm in timeList_weeks_in_month:
 	    timeParts = [int(s) for s in tm.split(':')]
@@ -401,7 +435,6 @@ def Stats7weeks():
 	hr, min = divmod(totalSecs, 60)
 	total_timeList_month.append("%d:%02d:%02d" % (hr, min, sec))
 
-	#print("Summa totalt alla veckor: " + str(total_timeList_month))
 
 	######## CATEGORIES week by week ##########
 
@@ -439,7 +472,7 @@ def Stats7weeks():
 			
 			# Week and category
 
-			print("Kategori att loopa: " + cat)
+			print("Looping through categories: " + cat)
 		
 			while week_days != day_offset:
 
@@ -453,12 +486,8 @@ def Stats7weeks():
 				for x in range(db_get_start_len):
 
 					if startQueryDate_strip in (db_get_start[x]['Startdate']) and cat in (db_get_start[x]['Category']):
-						#print("------")
-						#print(db_get_start[x]['Category'])
-						#print(db_get_start[x]['Event'])
+
 						time = (db_get_start[x]['EventTimeSum'])
-						#print(time)
-						#print("------")
 						timeList.append(time)
 						total_timeList.append(time)
 
@@ -467,7 +496,6 @@ def Stats7weeks():
 
 				week_days -= 1
 
-			#print(timeList)
 
 			totalSecs = 0
 			for tm in timeList:
@@ -475,7 +503,7 @@ def Stats7weeks():
 			    totalSecs += (timeParts[0] * 60 + timeParts[1]) * 60 + timeParts[2]
 			totalSecs, sec = divmod(totalSecs, 60)
 			hr, min = divmod(totalSecs, 60)
-			print("Total tid: " + cat + " | Vecka " + str(week))
+			print("Total time: " + cat + " | Week " + str(week))
 			print("%d:%02d:%02d" % (hr, min, sec))
 			print("")
 			
@@ -496,19 +524,22 @@ def Stats7weeks():
 
 		week += 1
 
-	print("Summa kategori v 1-5: " + str(catTime_ADM))
-	print("Summa kategori v 1-5: " + str(catTime_WEBB))
-	print("Summa kategori v 1-5: " + str(catTime_MEDIA))
-	print("Summa kategori v 1-5: " + str(catTime_ITPED))
-	print("Summa kategori v 1-5: " + str(catTime_MOTE))
-	print("Summa kategori v 1-5: " + str(catTime_UTV))
-	print("Summa kategori v 1-5: " + str(catTime_SUP))
-	print("Summa totalt veckor 1-5: " + str(timeList_weeks_in_month))
+	print("ADM Category total w 1-7: " + str(catTime_ADM))
+	print("WEBB Category total w 1-7: " + str(catTime_WEBB))
+	print("MEDIA Category total w 1-7: " + str(catTime_MEDIA))
+	print("ITPED Category total w 1-7: " + str(catTime_ITPED))
+	print("MÖTE Category total w 1-7: " + str(catTime_MOTE))
+	print("UTV Category total w 1-7: " + str(catTime_UTV))
+	print("SUP Category total w 1-7: " + str(catTime_SUP))
+	print("SUM all - total w 1-7: " + str(timeList_weeks_in_month))
 
-	
-	#percList = []
+	date_x_list = str(date_x_list)
+	date_x_list = date_x_list.replace("'",'"')
+	date_x_list = date_x_list.replace("[","")
+	date_x_list = date_x_list.replace("]","")
 
-	#catTime = catTime_ADM
+	print("Dates for x axis: " + date_x_list)
+
 
 	for cat in cat_list: 
 
@@ -531,9 +562,7 @@ def Stats7weeks():
 
 		for x in range(7):
 			l1 = str([catTime [x]])	
-			#print(l1)
 			l2 = str([timeList_weeks_in_month [x]])
-			#print(l2)
 
 			totalSecs = 0
 
@@ -544,7 +573,6 @@ def Stats7weeks():
 			hr, min = divmod(totalSecs, 60)
 
 			cat_time = (("%d:%02d:%02d") % (hr, min, sec))
-			#print("Time category: " + cat_time)
 
 			totalSecs = 0
 
@@ -555,8 +583,6 @@ def Stats7weeks():
 			hr, min = divmod(totalSecs, 60)
 
 			tot_time = (("%d:%02d:%02d") % (hr, min, sec))
-			#print("Time total: " + tot_time)
-
 
 			hh, mm, ss = map(int, cat_time.split(':'))
 			t1 = timedelta(hours=hh, minutes=mm, seconds=ss)
@@ -590,7 +616,7 @@ def Stats7weeks():
 			percList_SUP = percList
 
 
-	html_cat = ('<script> const labels = ["1", "2", "3", "4", "5", "6", "7"]; const NUMBER_CFG = {min: 0, max: 100}; const data = {labels: labels, datasets: [{ label: "Administration", data: [' 
+	html_cat = ('<script> const labels = [' + date_x_list + ']; const NUMBER_CFG = {min: 0, max: 100}; const data = {labels: labels, datasets: [{ label: "Administration", data: [' 
 		+ percList_ADM + '], borderColor: "rgb(255, 99, 132)", backgroundColor: "rgb(255, 99, 132)",}, { label: "IT-pedagog", data: [' 
 		+ percList_ITPED + '], borderColor: "#7db53f", backgroundColor: "#7db53f",}, { label: "Egen utveckling", data: [' 
 		+ percList_UTV + '], borderColor: "#bf2c2c", backgroundColor: "#bf2c2c",}, { label: "Support", data: [' 
@@ -602,8 +628,6 @@ def Stats7weeks():
 	with open("7weekcats.php", "w") as f2:
 			f2.write(html_cat)
 
-	#print("Summa totalt veckor 1-5: " + str(timeList_weeks_in_month))
-
 	timeList_weeks_in_month = str(timeList_weeks_in_month)
 	timeList_weeks_in_month = timeList_weeks_in_month.replace(":00","")
 	timeList_weeks_in_month = timeList_weeks_in_month.replace(":",".")
@@ -611,17 +635,19 @@ def Stats7weeks():
 	timeList_weeks_in_month = timeList_weeks_in_month.replace("[","")
 	timeList_weeks_in_month = timeList_weeks_in_month.replace("]","")
 
-	#print(timeList_weeks_in_month)
-
-	html_hours = ('<script> const labels2 = ["1", "2", "3", "4", "5", "6", "7"]; const NUMBER_CFG2 = {min: 0, max: 100}; const data2 = {labels: labels2, datasets: [{ label: "40 TIMMAR", data: [40, 40, 40, 40, 40, 40, 40], borderColor: "rgb(255, 99, 132)", backgroundColor: "rgb(255, 99, 132)", borderDash: [5, 5],}, {label: "ARBETAD TID", data: [' 
+	html_hours = ('<script> const labels2 = [' + date_x_list + ']; const NUMBER_CFG2 = {min: 0, max: 100}; const data2 = {labels: labels2, datasets: [{ label: "40 TIMMAR", data: [40, 40, 40, 40, 40, 40, 40], borderColor: "rgb(255, 99, 132)", backgroundColor: "rgb(255, 99, 132)", borderDash: [5, 5],}, {label: "ARBETAD TID", data: [' 
 		+ timeList_weeks_in_month + '], borderColor: "#ffc107", backgroundColor: "#ffc107",}]}; const config2 = {type: "line", data: data2, options: {color: "#ffffff", responsive: true, plugins: {legend: {position: "top",}, } }, }; var myChart2 = new Chart(document.getElementById("myChart1"), config2);</script>')
 
 	with open("7weekhours.php", "w") as f3:
 			f3.write(html_hours)
 
 
+# ------------------------------
+
+
 # Gets time and creates a updated time php page
-def timeNow():
+
+def TimeNow():
 	global klNu
 	global day
 	global date
@@ -642,21 +668,29 @@ def timeNow():
 		f1.write(styleTime + '<h1 class="clock"><i class="far fa-clock" aria-hidden="true"></i> ' + klNu + '</h1><h4>SENAST UPPDATERAT<br />' + day + ' | ' + date + ' ' + month + ' ' + year + ' | ' + klNu + '</h4>')
 
 
+# ------------------------------
+
+
 # Main loop
+
 def Main():
 
 	while True:
 
 		Calendar()
-		removedEvents()
-		sumTimeCat()
+		RemovedEvents()
+		SumTimeCat()
 		Stats7weeks()
-		timeNow()
+		TimeNow()
 		FileuUploads()
 		t.sleep(600)
 
 
+# ------------------------------
+
+
 ### MAIN PROGRAM ###
+
 if __name__ == "__main__":
 	Main()
 
