@@ -2,7 +2,7 @@
  Retrieves data from your Google or (possibly) Apple calendar (haven't tested yet) and creates some statistics that might be useful to you (or your boss ;) )
  My stats are running live at https://mickekring.se/stats/time/ (in Swedish)
  
-![v0_3](https://user-images.githubusercontent.com/10948066/124362857-f237fe80-dc37-11eb-8585-c4f550530f4b.jpg)
+![v0_5](https://user-images.githubusercontent.com/10948066/124654275-ab980d80-de9e-11eb-9deb-3f576c32234b.jpg)
 
 ## What is it and what does it do?
 It's a Python script that reads your calendar - and based on the prefix of the name of your calendar events, it creates statistics from it. Then it updates a website so that you can view it in a more user friendly way.
