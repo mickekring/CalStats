@@ -18,7 +18,7 @@
       $(".divtime").load("time.php");
       var refreshId = setInterval(function() {
       $(".divtime").load("time.php");
-      }, 5000);
+      }, 500000000);
       $(".divstatus").load("status.php");
       var refreshId2 = setInterval(function() {
       $(".divstatus").load("status.php");
@@ -46,12 +46,12 @@
       
         <div class="row">
         <div class="div1-half-top">
-        <h2 class="calheading">STATISTIK | ARBETSTID</h2>
+        <h2 class="calheading"><strong>STATISTIK </strong> ARBETSTID</h2>
         <div class="divtime"></div></div></div>
         
         <div class="row">
         <div class="div1-half-top">
-        <h2 class="calheading">TOTALT LÄSÅRET 21/22</h2>
+        <h2 class="calheading"><strong>TOTALT</strong> LÄSÅRET 21/22</h2>
         <div class="divstatus"></div></div></div>
      
       </div>
@@ -60,7 +60,7 @@
         
         <div class="row">
         <div class="div1-half-top">
-        <h2 class="calheading">SENASTE 7 VECKORNA - ARBETSUPPGIFTER (%)</h2>
+        <h2 class="calheading"><strong>SENASTE 7 VECKORNA</strong> ARBETSUPPGIFTER (%)</h2>
         <div>
         <canvas id="myChart30"></canvas>
         <div class="7weekcats"></div>
@@ -70,7 +70,7 @@
         
         <div class="row">
         <div class="div1-half-top">
-        <h2 class="calheading">SENASTE 7 VECKORNA - ARBETAD TID (TIM)</h2>
+        <h2 class="calheading"><strong>SENASTE 7 VECKORNA</strong> ARBETAD TID (TIM)</h2>
         <div>
         <canvas id="myChart1"></canvas>
         <div class="7weekhours"></div>
