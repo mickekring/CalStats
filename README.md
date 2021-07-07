@@ -5,9 +5,9 @@
 ![v0_5](https://user-images.githubusercontent.com/10948066/124654275-ab980d80-de9e-11eb-9deb-3f576c32234b.jpg)
 
 ## What is it and what does it do?
-It's a Python script that reads your calendar - and based on the prefix of the name of your calendar events, it creates statistics from it. Then it updates a website so that you can view it in a more user friendly way.
+I plan everything work related in my calendar and name the calendar events with prefixes like; '__ADM:__ Schedule' (ADM = Administration), '__WEB:__ Blogs' and so on. The script then groups all 'ADM:', 'WEB:' and other categories (hard coded in the script), calculates the time and divides it by the total time to get some percentages and other stuff that is useful to me. Simply put, it's a tool for me to make sure I spend my time well.
 
-I plan everything in my calendar and name the calendar events with prefixes like; 'ADM: Schedule', 'WEB: Blogs' and so on. The script then groups all 'ADM:', 'WEB:' and other categories (hard coded in the script), calculates the time and divides it by the total time to get some percentages and other stuff.
+The Python script runs on a Raspberry Pi and fetches and updates statistics every 10 minutes, uploads the php-files to my web server via sftp.
 
 ![cal](https://user-images.githubusercontent.com/10948066/124256060-283b8c80-db2b-11eb-93fe-8a4928c986e2.jpg)
 
@@ -21,7 +21,30 @@ __I'm not a coder__. I just like to create stuff. :)
 * Font Awesome https://fontawesome.com/
 
 ## Want to run it yourself?
-* In not really ready to document this yet. It's still pretty much in development. 
+
+__!DOCUMENTATION IS NOT READY AT THIS POINT!__
+
+__WHAT YOU NEED__
+* A device that can run Python 3.x
+* A web server with php support
+* An sftp server that the script uses to upload files to your web server
+* A public Google calendar (or Apple calendar)
+
+__SETUP__
+* Download all files to a folder of your choice
+* Open credentials.yml and change sftp account information, paths - both local url (where you run the script) and remote (on your web server) and the url to your calendar .ics file
+* Open index.php and change the title and headings
+* Open calstats.py and..........
+
+__INSTALL PYTHON MODULES__
+* Pytz - pip3 install pytz
+* Paramiko - pip3 install paramiko
+* YAML - pip3 install pyyaml
+* TinyDB - pip3 install tinydb
+* Datetime - pip3 install datetime
+
+__RUN__
+* Run calstats.py
 
 ## Version History
 * 0.5 Added dates for x-axis on the charts for the 7 weeks. Minor clean up of code.
