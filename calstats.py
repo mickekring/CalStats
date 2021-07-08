@@ -410,6 +410,8 @@ def Stats7weeks():
 				else:
 					pass
 
+			# Gets last date of each week for x-axis on the charts
+
 			if month_days == 1 or month_days == 8 or month_days == 15 or month_days == 22 or month_days == 29 or month_days == 36 or month_days == 43:
 				date_x_list.append(startQueryDate_strip)
 			else: 
@@ -665,7 +667,7 @@ def TimeNow():
 	styleTime = ''
 
 	with open("time.php", "w") as f1:
-		f1.write(styleTime + '<h1 class="clock"><i class="far fa-clock" aria-hidden="true"></i> ' + klNu + '</h1><h4>SENAST UPPDATERAT<br />' + day + ' | ' + date + ' ' + month + ' ' + year + ' | ' + klNu + '</h4>')
+		f1.write(styleTime + '<h1 class="clock"><i class="far fa-clock" aria-hidden="true"></i> ' + klNu + '</h1><h4><strong>SENAST</strong> UPPDATERAT<br />' + day + ' | ' + date + ' ' + month + ' ' + year + ' | ' + klNu + '</h4>')
 
 
 # ------------------------------
