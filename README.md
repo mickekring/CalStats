@@ -47,6 +47,7 @@ __RUN__
 * Run calstats.py
 
 ## Version History
+* 0.6 Added uploading of the json database file to the web server and fixed a bug that occurs when there is zero worked total time (e g when on vacation) which caused zero division. 
 * 0.5 Added dates for x-axis on the charts for the 7 weeks. Minor clean up of code.
 * 0.4 Added graph for hours worked, last 7 weeks.
 * 0.2 Initial upload. Percentages per category since a date you choose. Percentages per category, last 7 weeks.
