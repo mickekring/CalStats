@@ -314,10 +314,14 @@ def FileuUploads():
 		filepath4 = "7weekhours.php"
 		localpath4 = localUrlPath + "7weekhours.php"
 
+		filepath5 = "calstats.json"
+		localpath5 = localUrlPath + "calstats.json"
+
 		sftp.put(localpath1, filepath1)
 		sftp.put(localpath2, filepath2)
 		sftp.put(localpath3, filepath3)
 		sftp.put(localpath4, filepath4)
+		sftp.put(localpath5, filepath5)
 
 		sftp.close()
 		transport.close()
@@ -590,10 +594,17 @@ def Stats7weeks():
 			t1 = timedelta(hours=hh, minutes=mm, seconds=ss)
 			hh, mm, ss = map(int, tot_time.split(':'))
 			t2 = timedelta(hours=hh, minutes=mm, seconds=ss)
-			percentage = (t1/t2)
 
-			perc_round = (str(round(percentage * 100)))
-			percList.append(perc_round)
+			# If no total time exists, eg if you are on vacation, it skips division which causes error because of zero division,
+			# and sets the percentage to zero.			
+			if t2 == timedelta(0, 00, 00):
+				perc_round = 0
+				percList.append(perc_round)
+
+			else:
+				percentage = (t1/t2)
+				perc_round = (str(round(percentage * 100)))
+				percList.append(perc_round)
 		
 		percList = str(percList)
 		percList = percList.replace("'","")
