@@ -1,4 +1,4 @@
-import pytz, paramiko, locale, yaml
+import pytz, paramiko, locale, yaml, os
 from time import strftime
 import time as t
 from dateutil import tz
@@ -658,6 +658,17 @@ def Stats7weeks():
 # ------------------------------
 
 
+def FileSize():
+
+	global file_size_bytes
+
+	file_size = os.stat('calstats.json')
+	file_size_bytes = (str(file_size.st_size) + " bytes")
+
+
+# ------------------------------
+
+
 # Gets time and creates a updated time php page
 
 def TimeNow():
@@ -678,7 +689,10 @@ def TimeNow():
 	styleTime = ''
 
 	with open("time.php", "w") as f1:
-		f1.write(styleTime + '<h1 class="clock"><i class="far fa-clock" aria-hidden="true"></i> ' + klNu + '</h1><h4><strong>SENAST</strong> UPPDATERAT<br />' + day + ' | ' + date + ' ' + month + ' ' + year + ' | ' + klNu + '</h4>')
+		f1.write(styleTime + '<h1 class="clock"><i class="far fa-clock" aria-hidden="true"></i> ' 
+			+ klNu + '</h1><h4><strong>SENAST</strong> UPPDATERAT<br />' + day + ' | ' + date + ' ' 
+			+ month + ' ' + year + ' | ' + klNu + '</h4><p class"download"><i class="fas fa-file-download"></i> <a href="calstats.json">Ladda ned JSON (' 
+			+ file_size_bytes + ')</a></p>')
 
 
 # ------------------------------
@@ -694,6 +708,7 @@ def Main():
 		RemovedEvents()
 		SumTimeCat()
 		Stats7weeks()
+		FileSize()
 		TimeNow()
 		FileuUploads()
 		t.sleep(600)
