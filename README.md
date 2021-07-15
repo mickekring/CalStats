@@ -34,23 +34,24 @@ __WHAT YOU NEED__
 __SETUP__
 * Download all files to a folder of your choice
 * Open credentials.yml and change sftp account information, paths - both local url (where you run the script) and remote (on your web server) and the url to your calendar .ics file
-* Open index.php and change the title and headings that you want to display on your front end
+* Open index.php and edit the title and headings that you want to display on your front end
 * Upload index.php and style.css to your web server
 * Open calstats.py and change the following:
   * Line 39 | Locale
   * Line 43 | Ajust for summer / winter time
   * Line 51 | Start date from when the script should start track
-  * Line 109-132 | Enter your own category prefixes and category names
+  * Line 109-132 | Enter your own category prefixes and category names that you want to track
   * Line 138 | Exclude calendar events like lunch and unknown
-  * Line 213 | Change to the categories you want to sum time
-  * Line 350-362 | Choose the categories you want 7 week stats of and change/create lists names
+  * Line 213 | Modify the categories you want to track
+  * Line 350-362 | Modify the categories you want 7 week stats of and change/create lists names
   * Line 410 | Exclude if you have a "unknown" (Okänt in swedish) category
   * Line 516 - 540 | Change to your categories
   * Line 554 - 567 | Change to your categories
   * Line 616 - 629 | Change to your categories
   * Line 632 - 640 | Change to your categories
-  * Line 651 - 652 | Change the second graph html
+  * Line 651 - 652 | Change the second graph html output
   * Line 692 - 695 | Modify time text
+  * Line 714 | Modify how often you want the main loop to run in seconds
 
 
 __INSTALL PYTHON MODULES__
