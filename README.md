@@ -35,6 +35,7 @@ __SETUP__
 * Download all files to a folder of your choice
 * Open credentials.yml and change sftp account information, paths - both local url (where you run the script) and remote (on your web server) and the url to your calendar .ics file
 * Open index.php and change the title and headings that you want to display on your front end
+* Upload index.php and style.css to your web server
 * Open calstats.py and..........
 
 __INSTALL PYTHON MODULES__
