@@ -2,7 +2,8 @@
  Retrieves data from your Google or (possibly) Apple calendar (haven't tested yet) and creates some statistics that might be useful to you (or your boss ;) )
  My stats are running live at https://mickekring.se/stats/time/ (in Swedish)
  
-![v0_5](https://user-images.githubusercontent.com/10948066/124654275-ab980d80-de9e-11eb-9deb-3f576c32234b.jpg)
+![calstats0_6](https://user-images.githubusercontent.com/10948066/125815584-c60c044b-d7b0-43fc-aee9-c7edee45f8eb.jpg)
+___Image above showing front end___
 
 ## What is it and what does it do?
 I plan everything work related in my calendar and name the calendar events with prefixes like; '__ADM:__ Schedule' (ADM = Administration), '__WEB:__ Blogs' and so on. The script then groups all 'ADM:', 'WEB:' and other categories (hard coded in the script), calculates the time and divides it by the total time to get some percentages and other stuff that is useful to me. Simply put, it's a tool for me to make sure I spend my time well.
@@ -37,12 +38,20 @@ __SETUP__
 * Open index.php and change the title and headings that you want to display on your front end
 * Upload index.php and style.css to your web server
 * Open calstats.py and change the following:
-  * Line 39 - Locale
-  * Line 43 - Ajust for summer / winter time
-  * Line 51 - Start date from when the script should start track
-  * Line 109-132 - Enter your own category prefixes and category names
-  * Line 138 - Exclude calendar events like lunch and unknown
-  * 
+  * Line 39 | Locale
+  * Line 43 | Ajust for summer / winter time
+  * Line 51 | Start date from when the script should start track
+  * Line 109-132 | Enter your own category prefixes and category names
+  * Line 138 | Exclude calendar events like lunch and unknown
+  * Line 213 | Change to the categories you want to sum time
+  * Line 350-362 | Choose the categories you want 7 week stats of and change/create lists names
+  * Line 410 | Exclude if you have a "unknown" (Okänt in swedish) category
+  * Line 516 - 540 | Change to your categories
+  * Line 554 - 567 | Change to your categories
+  * Line 616 - 629 | Change to your categories
+  * Line 632 - 640 | Change to your categories
+  * Line 651 - 652 | Change the second graph html
+  * Line 692 - 695 | Modify time text
 
 
 __INSTALL PYTHON MODULES__
