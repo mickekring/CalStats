@@ -23,7 +23,7 @@ __I'm not a coder__. I just like to create stuff. :)
 
 # Want to run it yourself?
 
-This script is sort of tailored to my needs, so if you'd like to run it, you'll have to change a couple of things. Mainly names of the categories and in that case, some of the if-else, if you'd like to track in your calendar. Since I'm not a coder, I haven't (yet) been able to set all things you have to change as constant variables or lists, but I'll do my best to guide you.
+This script is sort of tailored to my needs, so if you'd like to run it, you'll have to change a couple of things. Mainly names of the categories you'd like to track and in that case, some conditions. Since I'm not a coder, I haven't (yet) been able to set all things you have to change as constant variables or lists, but I'll do my best to guide you.
 
 __WHAT YOU NEED__
 * A device that can run Python 3.x
@@ -33,7 +33,7 @@ __WHAT YOU NEED__
 
 __SETUP__
 * Download all files to a folder of your choice
-* Open credentials.yml and change sftp account information, paths - both local url (where you run the script) and remote (on your web server) and the url to your calendar .ics file
+* Open credentials.yml and change sftp account information, paths - both local url (where you run the script) and remote (on your web server) and the url to your public calendar .ics file
 * Open index.php and edit the title and headings that you want to display on your front end
 * Upload index.php and style.css to your web server
 * Open calstats.py and change the following:
