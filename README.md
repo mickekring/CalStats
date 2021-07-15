@@ -36,7 +36,14 @@ __SETUP__
 * Open credentials.yml and change sftp account information, paths - both local url (where you run the script) and remote (on your web server) and the url to your calendar .ics file
 * Open index.php and change the title and headings that you want to display on your front end
 * Upload index.php and style.css to your web server
-* Open calstats.py and..........
+* Open calstats.py and change the following:
+  * Line 39 - Locale
+  * Line 43 - Ajust for summer / winter time
+  * Line 51 - Start date from when the script should start track
+  * Line 109-132 - Enter your own category prefixes and category names
+  * Line 138 - Exclude calendar events like lunch and unknown
+  * 
+
 
 __INSTALL PYTHON MODULES__
 * Pytz - pip3 install pytz
