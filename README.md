@@ -5,7 +5,7 @@
 ![calstats0_6](https://user-images.githubusercontent.com/10948066/125815584-c60c044b-d7b0-43fc-aee9-c7edee45f8eb.jpg)
 ___Image above showing front end___
 
-## What is it and what does it do?
+## What is this? And what does it do?
 I plan everything work related in my calendar and name the calendar events with prefixes like; '__ADM:__ Schedule' (ADM = Administration), '__WEB:__ Blogs' and so on. The script then groups all 'ADM:', 'WEB:' and other categories (hard coded in the script), calculates the time and divides it by the total time to get some percentages and other stuff that is useful to me. Simply put, it's a tool for me to make sure I spend my time well.
 
 The Python script runs on a Raspberry Pi and fetches and updates statistics every 10 minutes, uploads the php-files to my web server via sftp.
