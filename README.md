@@ -23,8 +23,7 @@ __I'm not a coder__. I just like to create stuff. :)
 
 # Want to run it yourself?
 
-__!DOCUMENTATION IS NOT READY AT THIS POINT!__
-This script is sort of tailored to my needs, so if you'd like to run it, you'll have to change a couple of things. Mainly names of the categories you'd like to track in your calendar. Since I'm not a coder, I haven't (yet) been able to set all things you have to change as constant variables or lists, but I'll do my best to guide you.
+This script is sort of tailored to my needs, so if you'd like to run it, you'll have to change a couple of things. Mainly names of the categories and in that case, some of the if-else, if you'd like to track in your calendar. Since I'm not a coder, I haven't (yet) been able to set all things you have to change as constant variables or lists, but I'll do my best to guide you.
 
 __WHAT YOU NEED__
 * A device that can run Python 3.x
