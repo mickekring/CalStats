@@ -12,25 +12,26 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
+  <link rel="shortcut icon" type="image/jpg" href="favico.png"/>
   
   <script>
   $(document).ready(function() {
       $(".divtime").load("time.php");
       var refreshId = setInterval(function() {
       $(".divtime").load("time.php");
-      }, 500000000);
+      }, 10000);
       $(".divstatus").load("status.php");
       var refreshId2 = setInterval(function() {
       $(".divstatus").load("status.php");
-      }, 5000);
+      }, 10000);
       $(".7weekcats").load("7weekcats.php");
       var refreshId3 = setInterval(function() {
       $(".7weekcats").load("7weekcats.php");
-      }, 5000);
+      }, 10000000);
       $(".7weekhours").load("7weekhours.php");
       var refreshId4 = setInterval(function() {
       $(".7weekhours").load("7weekhours.php");
-      }, 5000);
+      }, 10000000);
   });
   </script>
 
