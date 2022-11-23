@@ -1,0 +1,40 @@
+sftp:
+  username: www-user
+  password: password123
+  host: 11.22.33.44
+  port: 22
+
+paths:
+  #localurlpath: "/home/micke/code/calstats-v2/"
+  localurlpath: "/Users/micke/Dropbox/KOD/_DEV/calstats/"
+  remoteurlpath: "/var/www/domain.com/public/stats/time/"
+
+twitter:
+  consumer_key: 
+  consumer_secret: 
+  access_token: 
+  access_token_secret: 
+
+email:
+  username:
+  password:
+
+twilio:
+  account_sid: 
+  auth_token: 
+  from_phone_number: 
+  to_phone_number: 
+
+urlcalendar:
+  link_url_work_calendar: https://p31-caldav.icloud.com/published/..................pZcA8
+  link_count_time_calendar: https://p31-caldav.icloud.com/published/2/............WAamfPwU
+
+
+config:
+  sleep_time: 20
+
+### Localization
+
+local:
+  locale: "sv_SE.UTF-8"
+  timezone: "Europe/Stockholm"
