@@ -4,6 +4,11 @@ body {
     padding: 20px;
 }
 
+span.tim {
+    font-size: 14px;
+    font-weight: 300;
+}
+
 strong {
     font-weight: 700;
 }
@@ -30,6 +35,39 @@ p.cattitle {
     padding: 14px;
 }
 
+.col {
+    background: #121212;
+    color: #fff;
+    border-radius: 14px;
+    padding: 22px 22px 10px 22px;
+}
+
+.col.box1 {
+    margin-right: 11px;
+}
+
+.col.box2 {
+    margin-left: 11px;
+    margin-right: 11px;
+}
+
+.col.box3 {
+    margin-left: 11px;
+}
+
+p.boxtitle {
+    font-size: 26px;
+    font-weight: 300;
+    text-transform: uppercase;
+    margin-top: -2px;
+}
+
+p.boxnumber {
+    font-size: 40px;
+    font-weight: 700;
+    text-align: center;
+}
+
 a:hover {
     color: #f29f1c;
 }
@@ -48,7 +86,7 @@ a:hover {
     color: #fff;
     background-color: #111111;
     padding-top: 22px;
-    padding-bottom: 22px;
+    padding-bottom: 14px;
     padding-left: 22px;
     padding-right: 22px;
     border-radius: 14px;
@@ -172,6 +210,12 @@ p.calfontsource {
 
 p.boxp {
     font-size: 16px;
+}
+
+p.tim {
+    font-size: 12px;
+    margin-top: -28px;
+    text-align: center;
 }
 
 /* ########### VIDEO & IMAGES ############ */
